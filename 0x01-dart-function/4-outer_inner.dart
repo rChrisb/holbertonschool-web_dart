@@ -1,12 +1,9 @@
-String inner() {
-  return "Welcome to the program, Agent";
-}
-
 void outer(String name, String id) {
-  List<String> nameParts = name.split(' ');
-  String lastName = nameParts[0];
-  String firstName = nameParts[1][0] + '.';
-  print('Hello Agent $firstName$lastName, your ID is $id');
+  String inner() {
+    var spliting = name.split(" ");
+    var nameAgent = spliting[1].substring(0, 1) + "." + spliting[0];
+    return "Hello Agent ${nameAgent} your id is $id";
+  }
+
   print(inner());
 }
-

@@ -1,7 +1,7 @@
-import '2-sumfunc.dart';
+import '5-calculate-area.dart';
 
-void main(List<String> args) {
-  var a = int.parse(args[0]);
-  var b = int.parse(args[1]);
-  print(showFunc(a, b));
+void main() {
+  print(calculateArea(20, 7));
+  print(calculateArea(10, 7));
+  print(calculateArea(8.5, 3.7));
 }
