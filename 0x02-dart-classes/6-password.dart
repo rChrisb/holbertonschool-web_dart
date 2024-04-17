@@ -1,37 +1,25 @@
-// 6-password.dart
 class Password {
-  String? _password;
+  String? _password = "";
 
-  Password({String? password}) {
-    _password = password;
-  }
+  String get password => _password!;
 
-  String? get password => _password;
-
-  set password(String? newPassword) {
-    _password = newPassword;
-  }
+  set password(String password) => _password = password;
+  Password({password}) : _password = password;
 
   bool isValid() {
-    if (_password == null || _password!.isEmpty) {
-      return false;
+    if ((this._password?.length ?? 0) > 6 &&
+        (this._password?.length ?? 0) < 18) {
+      if (this._password!.contains(RegExp(r"(?=.*[a-z])(?=.*[A-Z])\w+"))) {
+        if (this._password!.contains(RegExp(r'\d'))) {
+          return true;
+        }
+      }
     }
-    final RegExp _upperCase = RegExp(r'[A-Z]');
-    final RegExp _lowerCase = RegExp(r'[a-z]');
-    final RegExp _number = RegExp(r'\d');
+    return false;
+  }
 
-    if (_password!.length < 8 || _password!.length > 16) {
-      return false;
-    }
-    if (!_upperCase.hasMatch(_password!)) {
-      return false;
-    }
-    if (!_lowerCase.hasMatch(_password!)) {
-      return false;
-    }
-    if (!_number.hasMatch(_password!)) {
-      return false;
-    }
-    return true;
+  @override
+  String toString() {
+    return "Your Password is: ${this._password}";
   }
 }

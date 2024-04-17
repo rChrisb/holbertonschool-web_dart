@@ -1,41 +1,38 @@
-// 6-inheritance.dart
 import '6-password.dart';
 
-class User {
-  int id;
+class User extends Password {
+  int? id;
   String name;
   int age;
   double height;
-  Password? user_password;
+  String? user_password;
 
-  User({
-    required this.id,
-    required this.name,
-    required this.age,
-    required this.height,
-    this.user_password,
-  });
+  User(
+      {int? this.id,
+      required this.name,
+      required this.age,
+      required this.height,
+      String? this.user_password});
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'age': age,
-      'height': height,
-    };
+  Map toJson() {
+    return {"id": id, "name": name, "age": age, "height": height};
   }
 
   static User fromJson(Map<dynamic, dynamic> userJson) {
     return User(
-      id: userJson['id'],
-      name: userJson['name'],
-      age: userJson['age'],
-      height: userJson['height'],
-    );
+        id: userJson['id'],
+        name: userJson['name'],
+        age: userJson['age'],
+        height: userJson['height']);
   }
 
-  @override
+  String showName() {
+    return "Hello $name";
+  }
+
   String toString() {
-    return 'User(id : $id ,name: $name, age: $age, height: $height, Password: ${user_password?.isValid()})';
+    final pass = Password(password: user_password);
+
+    return "User(id : $id ,name: $name, age: $age, height: $height, Password: ${pass.isValid()})";
   }
 }
